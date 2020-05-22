@@ -4,7 +4,7 @@ This repository contains terraform code I use in various projects, broken out by
 In the base of the repo is a basic CloudFormation template and shell script for creating a remote state backend if one does not already exist. 
 
 ## Prerequisites
-* Terraform `>= 0.12`
+* Terraform `>= 0.12.25`
 * jq `>= 1.6`
 * AWSCLI installed and configured with active AWS credentials
 
