@@ -1,12 +1,14 @@
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| aws | >= 2.62.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
+| aws | >= 2.62.0 |
 
 ## Inputs
 
@@ -17,7 +19,7 @@ No requirements.
 | key | SSH key for accessing the instance. | `any` | n/a | yes |
 | name | Name of the instance. | `any` | n/a | yes |
 | profile | IAM instance profile to attach to the instance. | `any` | n/a | yes |
-| sgs | Security group IDs to attach to the instance. | `list` | n/a | yes |
+| sgs | Security group IDs to attach to the instance. | `list(string)` | n/a | yes |
 | ud | User data for the instance. | `any` | n/a | yes |
 
 ## Outputs

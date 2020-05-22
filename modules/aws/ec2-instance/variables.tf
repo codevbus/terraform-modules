@@ -12,7 +12,7 @@ variable "ud" {
 
 variable "sgs" {
   description = "Security group IDs to attach to the instance."
-  type        = "list"
+  type        = list(string)
 }
 
 variable "key" {
