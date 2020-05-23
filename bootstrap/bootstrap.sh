@@ -52,7 +52,7 @@ fi
 #Check if there is a 'terraform-backend' CloudFormation stack
 if aws cloudformation describe-stacks --stack-name terraform-backend ; then
 	echo "terraform-backend CloudFormation stack detected, parsing it for values..."
-	BUCKETNAME=$(aws cloudformation describe-stacks --stack-name terraform-backend | jq '.Stacks[] | select(.StackName == "terraform-backend") | .Outputs[] | select(.OutputKey == "StateBucketName").OutputValue')
+	BUCKETNAME=$(aws cloudformation describe-stacks --stack-name terraform-backend | jq '.Stacks[] | select(.StackName == "terraform-backend") | .Outputs[] | select(.OutputKey == "StateBucketName").OutputValue' | tr -d \")
 	TABLENAME=$(aws cloudformation describe-stacks --stack-name terraform-backend | jq '.Stacks[] | select(.StackName == "terraform-backend") | .Outputs[] | select(.OutputKey == "LockTableName").OutputValue')
 	BUCKETREGION=$(aws s3api get-bucket-location --bucket "$BUCKETNAME" | jq '.LocationConstraint')
 else
@@ -73,7 +73,7 @@ provider "$PROVIDER" {}
 
 terraform {
   backend "s3" {
-    bucket         = $BUCKETNAME
+    bucket         = "$BUCKETNAME"
     key            = "$PROJECTNAME/terraform.tfstate"
     region         = $BUCKETREGION
     dynamodb_table = $TABLENAME
