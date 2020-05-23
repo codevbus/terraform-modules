@@ -6,7 +6,7 @@ terraform {
 
 resource "aws_security_group" "main" {
   name        = var.name
-  description = "Security group for ZNC IRC bouncer."
+  description = var.description
   vpc_id      = var.vpc
 
   ingress = [

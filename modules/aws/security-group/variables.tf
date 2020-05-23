@@ -6,6 +6,11 @@ variable "vpc" {
   description = "ID of the VPC to place the security group in."
 }
 
+variable "description" {
+  description = "Security group description"
+  default     = "security group"
+}
+
 variable "ingress_rules" {
   description = "List of ingress rule objects"
   type = list(object({
