@@ -12,7 +12,6 @@ variable "type" {
 
 variable "ttl" {
   description = "TTL of the Route53 record."
-  type        = number
 }
 
 variable "records" {
