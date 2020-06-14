@@ -1,4 +1,3 @@
-[![Derek](https://alexellis.o6s.io/badge?repo=terraform-modules&owner=codevbus](https://github.com/alexellis/derek/)
 # Terraform Modules
 This repository contains terraform code I use in various projects, broken out by module.
 
