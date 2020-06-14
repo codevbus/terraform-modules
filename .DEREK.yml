@@ -1,7 +1,0 @@
-curators:
-  - codevbus
-
-features:
-  - comments
-  - pr_description_required
-  - release_notes
