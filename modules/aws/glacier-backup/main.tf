@@ -13,21 +13,21 @@ resource "aws_s3_bucket" "main" {
     Terraform = true
   }
 
-  lifecycle_rule = {
+  lifecycle_rule {
     id      = "glacier-transition-rule"
     enabled = true
 
-    transition = {
+    transition {
       days          = 0
       storage_class = "GLACIER"
     }
   }
 
-  server_side_encryption_configuration = {
+  server_side_encryption_configuration {
 
-    rule = {
+    rule {
 
-      apply_server_side_encryption_by_default = {
+      apply_server_side_encryption_by_default {
         sse_algorithm = "AES256"
       }
     }
@@ -50,7 +50,7 @@ resource "aws_iam_access_key" "main" {
 
 resource "aws_iam_policy" "main" {
   name   = "${var.project_name}-user-policy"
-  policy = data.aws_policy_document.main
+  policy = data.aws_iam_policy_document.main.json
 }
 
 resource "aws_iam_user_policy_attachment" "main" {
@@ -58,10 +58,11 @@ resource "aws_iam_user_policy_attachment" "main" {
   policy_arn = aws_iam_policy.main.arn
 }
 
-data "aws_policy_document" "main" {
+data "aws_iam_policy_document" "main" {
   statement {
     actions   = ["s3:*"]
     resources = [aws_s3_bucket.main.arn]
     effect    = "Allow"
+    sid       = "AllowAccessGlacierBackupBucket"
   }
 }
